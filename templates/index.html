@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>ML API</title>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <marquee direction="right">
+    <h1 class="jumbotron" style="text-align: center;">Chronic Kidney Disease Prediction</h1>
+    </marquee>
+    <div class="container">
+
+    <form action="{{ url_for('y_predict')}}"method="post">
+        <div class="form-row">
+            <div class="form-group col-auto">
+                <label>Age</label>
+                <input type="number" class="form-control" name="age" placeholder="age" required="required" />
+            </div>    
+            <div class="form-group col-auto">
+                <label>Blood Pressure</label>
+                <input type="number" class="form-control" name="bp" placeholder="bp" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Specific Gravity</label>
+                <input type="float" class="form-control" name="sg" placeholder="sg" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Albumin</label>
+                <input type="number" class="form-control" name="al" placeholder="al" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Sugar</label>
+                <input type="number" class="form-control" name="su" placeholder="su" required="required" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-auto">
+                <label>Red Blood Cells</label>
+        		<select class="form-control" name="rbc" required="required">
+        		  <option value="">Select RBC </option>
+        		  <option value=1>Normal</option>
+        		  <option value=0>Abnormal</option>
+        		</select>
+        	</div>
+        	<div class="form-group col-auto">
+                <label>Pus Cell</label>
+        		<select class="form-control" name="pc" required="required">
+        		  <option value="">Select PC </option>
+        		  <option value=1>Normal</option>
+        		  <option value=0>Abnormal</option>
+        		</select>
+        	</div>
+        	<div class="form-group col-auto">
+                <label>Pus Cell Clumps</label>
+        		<select class="form-control" name="pcc" required="required">
+        		  <option value="">Select PCC </option>
+        		  <option value=0>Not Present</option>
+        		  <option value=1>Present</option>
+        		</select>
+    		</div>
+    		<div class="form-group col-auto">
+                <label>Bacteria</label>
+        		<select class="form-control" name="ba" required="required">
+        		  <option value="">Select BA </option>
+        		  <option value=0>Not Present</option>
+        		  <option value=1>Present</option>
+        		</select>
+        	</div>
+    	</div>
+    	<div class="form-row">
+        	<div class="form-group col-auto">
+                <label>Blood Glucose Random</label>
+                <input type="number" class="form-control" name="bgr" placeholder="bgr" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Blood Urea</label>
+                <input type="number" class="form-control" name="bu" placeholder="bu" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Serum Creatinine</label>
+                <input type="float" class="form-control" name="sc" placeholder="sc" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Sodium</label>
+                <input type="number" class="form-control" name="sod" placeholder="sod" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Potassium</label>
+                <input type="float" class="form-control" name="pot" placeholder="pot" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Hemoglobin</label>
+                <input type="float" class="form-control" name="hemo" placeholder="hemo" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Packed Cell Volume</label>
+                <input type="number" class="form-control" name="pcv" placeholder="pcv" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>White Blood Cell Count</label>
+                <input type="number" class="form-control" name="wc" placeholder="wc" required="required" />
+            </div>
+            <div class="form-group col-auto">
+                <label>Red Blood Cell Count</label>
+                <input type="float" class="form-control" name="rc" placeholder="rc" required="required" />
+            </div>
+        </div>
+        <div class="form-row">
+    		<div class="form-group col-auto">
+                <label>Hypertension</label>
+                <select class="form-control" name="htn" required="required">
+        		  <option value="">Select HTN </option>
+        		  <option value=1>Yes</option>
+        		  <option value=0>No</option>
+        		</select>
+            </div>
+            <div class="form-group col-auto">
+                <label>Diabetes Mellitus</label>
+                <select class="form-control" name="dm" required="required">
+        		  <option value="">Select DM </option>
+        		  <option value=1>Yes</option>
+        		  <option value=0>No</option>
+        		</select>
+        	</div>
+            <div class="form-group col-auto">
+                <label>Coronary Artery Disease</label>
+        		<select class="form-control" name="cad" required="required">
+        		  <option value="">Select CAD </option>
+        		  <option value=1>Yes</option>
+        		  <option value=0>No</option>
+        		</select>
+        	</div>
+            <div class="form-group col-auto">
+                <label>Appetite</label>
+        		<select class="form-control" name="appet" required="required">
+        		  <option value="">Select Appet </option>
+        		  <option value=0>Good</option>
+        		  <option value=1>Poor</option>
+        		</select>
+        	</div>
+            <div class="form-group col-auto">
+                <label>Pedal Edema</label>
+        		<select class="form-control" name="pe" required="required">
+        		  <option value="">Select PE </option>
+        		  <option value=1>Yes</option>
+        		  <option value=0>No</option>
+        		</select>
+        	</div>
+            <div class="form-group col-auto">
+                <label>Anemia</label>
+        		<select class="form-control" name="ane" required="required">
+        		  <option value="">Select ANE </option>
+        		  <option value=1>Yes</option>
+        		  <option value=0>No</option>
+        		</select>
+        	</div>
+    	</div>
+        <button type="submit" class="btn btn-primary btn-block btn-large submitButton">Predict</button>
+    
+    </form>
+
+   <br>
+   <br>
+   </div>
+   <h1 class="jumbotron predict-text" style="text-align: center;">{{ prediction_text }}<h1>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+  </body>
+</html>
